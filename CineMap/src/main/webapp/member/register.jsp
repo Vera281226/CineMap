@@ -59,9 +59,7 @@
 						<tr>
 							<td>생년월일</td>
 							<td>
-				               <input type="text" name="birthyear" size="8" maxlength="4" placeholder="년도(예: 1990)">
-				               <input type="text" name="birthmonth" size="4" maxlength="2" placeholder="월(예: 12)">
-				               <input type="text" name="birthday" size="4" maxlength="2" placeholder="일(예: 25)">
+				               <input type="text" name="birthdate" size="16" maxlength="10" placeholder="년도(예: 1990.12.25)">
 				           </td>
 						</tr>
 						<tr>

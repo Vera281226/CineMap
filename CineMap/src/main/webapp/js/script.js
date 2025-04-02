@@ -16,8 +16,6 @@ function inputCheck(){
 		return;
 	}
 	
-	// 이하 생략 ...
-	
 	// 패스워드 일치 여부 확인
 	if (regForm.passwd.value !== regForm.repasswd.value) {
 	    alert("패스워드가 일치하지 않습니다.");
@@ -39,6 +37,7 @@ function funcLogin(){
 		loginForm.action = "loginproc.jsp";
 		loginForm.method = "post";
 		loginForm.submit();
+		location.href("index.jsp")
 	}
 }
 
@@ -56,9 +55,8 @@ function memberUpdate(){
 	
 }
 
-
 function memberUpdateCancel(){
-	location.href = "../guest/guest_index.jsp";
+	location.href = "index.jsp";
 }
 
 function memberDelete(){

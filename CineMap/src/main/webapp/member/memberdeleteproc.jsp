@@ -3,15 +3,12 @@
 
 <% request.setCharacterEncoding("utf-8"); %>
 
-<jsp:useBean id="memberBean" class="pack.member.MemberBean"/>
-<jsp:setProperty property="*" name="memberBean"/>
-
 <jsp:useBean id="memberManager" class="pack.member.MemberManager"/>
 
 <%
 String id = (String)session.getAttribute("idKey");
 
-boolean b = memberManager.memberUpdate(memberBean, id);
+boolean b = memberManager.memberDelete(id);
 
 if(b){
 %>

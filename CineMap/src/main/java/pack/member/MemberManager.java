@@ -55,7 +55,7 @@ public class MemberManager {
 		
 		try {
 			conn = ds.getConnection();
-			String sql = "insert into member values(?,?,?,?,?,?,?,?)";
+			String sql = "insert into member values(?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,mbean.getId());
 			pstmt.setString(2,mbean.getPasswd());
@@ -64,7 +64,7 @@ public class MemberManager {
 			pstmt.setString(5,mbean.getEmail());
 			pstmt.setString(6,mbean.getPhone());
 			pstmt.setString(7,mbean.getBirthdate());
-			
+			 
 			if(pstmt.executeUpdate() > 0) b = true;
 			
 		} catch (Exception e) {
@@ -157,6 +157,7 @@ public class MemberManager {
 			pstmt.setString(4,memberBean.getEmail());
 			pstmt.setString(5,memberBean.getPhone());
 			pstmt.setString(6,memberBean.getBirthdate());
+			pstmt.setString(7, id);
 			
 			if(pstmt.executeUpdate()>0) b= true;
 		} catch (Exception e) {
@@ -168,6 +169,63 @@ public class MemberManager {
 				if(conn != null) conn.close();
 			} catch (Exception e2) {
 				e2.getStackTrace();
+			}
+		}
+		return b;
+	}
+	// ★ 로그인한 회원 정보 불러오는 메서드
+    public MemberDto getMemberInfo(String id) {
+        MemberDto dto = null;
+
+        try {
+        	conn = ds.getConnection();
+            String sql = "SELECT id, email, nickname FROM member WHERE id = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                dto = new MemberDto();
+                dto.setId(rs.getString("id"));
+                dto.setEmail(rs.getString("email"));
+                dto.setNickname(rs.getString("nickname"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.getStackTrace();
+			}
+		}
+
+        return dto;
+    }
+	
+	public boolean memberDelete(String id) {
+		
+boolean b = false;
+		
+		String sql = "delete from member where id=?";
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			if(pstmt.executeUpdate()>0) b= true;
+		} catch (Exception e) {
+			System.out.println("memberDelete err: " + e);
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e) {
+				System.out.println("memberDelete err: " + e);
 			}
 		}
 		return b;

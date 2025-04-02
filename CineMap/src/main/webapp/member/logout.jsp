@@ -13,7 +13,7 @@ session.removeAttribute("idKey");
 <body>
 <script type="text/javascript">
 	alert("로그아웃 성공");
-	location.href="../guest/guest_index.jsp";
+	location.href="index.jsp";
 </script>
 </body>
 </html>

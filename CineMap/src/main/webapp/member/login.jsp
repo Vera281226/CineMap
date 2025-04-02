@@ -23,16 +23,14 @@ window.onload = () => {
 <%
 if(id != null){	// 로그인 O
 %>
-	<b><%=id %>님 환영합니다!</b>
-	지금부터 저희가 준비한 커뮤니티 기능 사용 가능합니다<br>
-	<a href="logout.jsp">로그아웃</a>
+	<a href="index.jsp">인덱스</a>
 <%
 }else{			// 로그인 X
 %>
 <form name="loginForm">
 	<table>
 		<tr>
-			<td colspan="2" style="text-align: center;">* 회원 로그인 *</td>
+			<td colspan="2" style="text-align: center;"> 회원 로그인 </td>
 		</tr>
 		<tr>
 			<td>아이디</td>

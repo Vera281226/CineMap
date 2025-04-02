@@ -11,7 +11,7 @@ String id = (String)session.getAttribute("idKey");
 MemberDto memberDto = memberManager.getMember(id);
 
 if(memberDto == null){
-	response.sendRedirect("../guest/guest_index.jsp");
+	response.sendRedirect("index.jsp");
 	return;
 }
 %>
@@ -25,7 +25,7 @@ if(memberDto == null){
 
 <script type="text/javascript">
 window.onload =() =>{
-	
+
 	document.querySelector("#btnUpdate").onclick = memberUpdate;
 	document.querySelector("#btnUpdateCancel").onclick = memberUpdateCancel;
 	document.querySelector("#btnDelete").onclick = memberDelete;
@@ -43,8 +43,8 @@ window.onload =() =>{
 							<td colspan="2"><b style="color: #FFFFFF"><%=memberDto.getName() %> 회원님의 정보를 수정합니다</b></td>
 						</tr>
 						<tr>
-							<td width="16%">아이디</td>
-							<td width="57%"><%=memberDto.getId() %></td> <!-- id는 수정에서 제외 -->
+							<td>아이디</td>
+							<td><%=memberDto.getId() %></td> <!-- id는 수정에서 제외 -->
 						</tr>
 						<tr>
 							<td>비밀번호</td>
@@ -56,7 +56,7 @@ window.onload =() =>{
 						</tr>
 						<tr>
 							<td>닉네임</td>
-							<td><input type="text" name="name" size="15" value="<%=memberDto.getNickname() %>"></td>
+							<td><input type="text" name="nickname" size="15" value="<%=memberDto.getNickname() %>"></td>
 						</tr>
 						<tr>
 							<td>이메일</td>
@@ -68,7 +68,7 @@ window.onload =() =>{
 						</tr>
 						<tr>
 							<td>생년월일</td>
-							<td><input type="text" name="birthdate" size="15" value="<%=memberDto.getBirthdate() %>"></td>
+							<td><input type="text" name="birthdate" size="16" value="<%=memberDto.getBirthdate() %>"></td>
 						</tr>
 						<tr>
 							<td colspan="2" style="text-align: center;">

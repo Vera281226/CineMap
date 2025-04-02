@@ -13,7 +13,7 @@ boolean b = memberManager.loginCheck(id, passwd);
 
 if(b){
 	session.setAttribute("idKey", id);
-	response.sendRedirect("../guest/guest_index.jsp");
+	response.sendRedirect("index.jsp");
 }else{
 	response.sendRedirect("logfail.html");
 }
