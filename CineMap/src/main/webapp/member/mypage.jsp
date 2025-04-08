@@ -1,3 +1,5 @@
+<%@page import="pack.mybatis.SqlMapConfig"%>
+<%@page import="org.apache.ibatis.session.SqlSession"%>
 <%@page import="pack.member.MemberManager"%>
 <%@page import="pack.member.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -8,9 +10,11 @@
     String id = (String)session.getAttribute("idKey");
     MemberDto memberDto = null;
 
+    SqlSession sqlSession = SqlMapConfig.getSqlSession().openSession();
+    
     if (id != null) {
         MemberManager manager = new MemberManager();
-        memberDto = manager.getMemberInfo(id);
+        memberDto = manager.getMember(id);
 
         request.setAttribute("memberDto", memberDto);
     }
@@ -36,6 +40,9 @@
             width: 80%;
             margin: 0 auto;
             padding-top: 20px;
+            display: flex;
+            flex-direction: column; /* 세로로 정렬 */
+            align-items: flex-start; /* 왼쪽 정렬 */
         }
 
         /* 나의 정보 섹션 */
@@ -44,22 +51,24 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%; /* 전체 너비 사용 */
+            margin-bottom: 20px;
         }
 
         .my-info h2 {
-            text-align: center;
+            text-align: left;
             color: #333;
         }
 
         .info-details {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            align-items: flex-start; /* 왼쪽 정렬 */
             margin-bottom: 20px;
         }
 
         .info-details div {
-            flex: 1;
-            text-align: center;
+            margin-bottom: 10px;
         }
 
         .my-info button {
@@ -84,17 +93,19 @@
             margin-top: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
         }
 
         .favorite-movies h2 {
-            text-align: center;
+            text-align: left;
             color: #333;
         }
 
         .categories {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start; /* 왼쪽 정렬 */
             margin-top: 20px;
+            width: 100%;
         }
 
         .category {
@@ -102,7 +113,7 @@
             padding: 15px;
             border-radius: 10px;
             margin-right: 10px;
-            text-align: center;
+            text-align: left;
             flex: 1;
         }
 
@@ -133,10 +144,23 @@
             color: #4CAF50;
         }
 
-        /* 내가 쓴 글과 나의 리뷰 왼쪽 정렬 */
-        .category .left-align {
-            text-align: left;
+        /* 버튼 스타일 */
+        .category button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+            margin-top: 10px;
+            text-align: center;
         }
+
+        .category button:hover {
+            background-color: #45a049;
+        }
+
     </style>
 </head>
 <body>
@@ -145,11 +169,11 @@
         <div class="my-info">
             <h2>나의 정보</h2>
             <div class="info-details">
-                <div><strong>아이디:</strong> <%=memberDto.getId() %></div>
-                <div><strong>이메일:</strong> <%=memberDto.getEmail() %></div>
-                <div><strong>닉네임:</strong> <%=memberDto.getNickname() %></div>
+                <div><strong>아이디:</strong> ${memberDto.id}</div>
+                <div><strong>닉네임:</strong> ${memberDto.nickname}</div>
+                <div><strong>이메일:</strong> ${memberDto.email}</div>
             </div>
-            <div class="buttons" style="text-align: center;">
+            <div class="buttons">
                 <button id="btnUpdate">회원수정</button>
                 <button id="btnDelete">회원탈퇴</button>
             </div>
@@ -159,39 +183,29 @@
         <div class="favorite-movies">
             <h2>❤️ 찜한 영화</h2>
             <div class="categories">
-                <!-- 내가 쓴 글 -->
-                <div class="category left-align">
+                <!-- 내가 쓴 글 (버튼으로 변경) -->
+                <div class="category">
                     <h3>내가 쓴 글</h3>
-                    <ul>
-                        <li><a href="#">글 제목 1</a></li>
-                        <li><a href="#">글 제목 2</a></li>
-                        <li><a href="#">글 제목 3</a></li>
-                    </ul>
+                    <button onclick="window.location.href='#';">글 목록 보기</button>
                 </div>
 
-                <!-- 나의 리뷰 -->
-                <div class="category left-align">
+                <!-- 나의 리뷰 (버튼으로 변경) -->
+                <div class="category">
                     <h3>나의 리뷰</h3>
-                    <ul>
-                        <li><a href="#">영화 제목 1 - 리뷰</a></li>
-                        <li><a href="#">영화 제목 2 - 리뷰</a></li>
-                        <li><a href="#">영화 제목 3 - 리뷰</a></li>
-                    </ul>
+                    <button onclick="window.location.href='#';">리뷰 목록 보기</button>
                 </div>
             </div>
         </div>
     </div>
 
-     <script type="text/javascript">
+    <script type="text/javascript">
         // 회원수정 버튼 클릭 시 memberupdate.jsp로 이동
         document.getElementById("btnUpdate").addEventListener("click", function() {
-        	confirm("확인");
             window.location.href = "../member/memberupdate.jsp"; // 회원 수정 페이지로 이동
         });
 
         // 회원탈퇴 버튼 클릭 시 memberdelete.jsp로 이동
         document.getElementById("btnDelete").addEventListener("click", function() {
-        	confirm("확인");
             window.location.href = "../member/memberdelete.jsp"; // 회원 탈퇴 페이지로 이동
         });
     </script>

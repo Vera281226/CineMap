@@ -1,3 +1,4 @@
+<%@page import="pack.member.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
 
@@ -5,6 +6,8 @@
 
 <%
 String id = (String) session.getAttribute("idKey");
+MemberDto dto = memberManager.getMember(id);
+String passwdInput = (String) request.getAttribute("password");
 
 if (id == null) {
     // 로그인 정보가 없을 경우
@@ -13,27 +16,20 @@ if (id == null) {
 }
 
 try {
-    boolean b = memberManager.memberDelete(id);
-
-    if (b) {
-        // 회원 탈퇴가 성공하면 세션을 무효화하고 로그아웃 처리
-        session.invalidate(); // 세션 무효화
-
-        // 성공 메시지와 함께 메인 페이지로 리디렉션
+    
+    if(passwdInput == dto.getPasswd()){
 %>
         <script>
-            alert("회원 탈퇴 성공");
-            location.href = "../index.jsp";  // 메인 페이지로 리디렉션
+            location.href = "memberupdate.jsp";  
         </script>
 <%
-    } else {
-        // 회원 탈퇴 실패 시
+    }else{
 %>
         <script>
-            alert("삭제 실패\n 관리자에게 문의 바랍니다.");
+            alert("비밀번호가 일치하지 않습니다.");
             history.back();  // 이전 페이지로 돌아감
         </script>
-<%
+<%    	
     }
 } catch (Exception e) {
     e.printStackTrace();

@@ -12,8 +12,8 @@ session.removeAttribute("idKey");
 </head>
 <body>
 <script type="text/javascript">
-<% session.removeAttribute("idKey"); %>
-location.href="/CineMap/index.jsp";
+alert("로그아웃 성공");
+location.href="../index.jsp";
 </script>
 </body>
 </html>
