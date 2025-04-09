@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .container {
     width: 80%;
     max-width: 900px;
@@ -48,4 +49,21 @@ font-size: 14px; /* 글자 크기 축소 */
 .map-image {
     text-align: center;
     margin-bottom: 10px;
+}
+
+/* 다크모드 */
+body.dark-mode .theater-item {
+    background-color: #2b2b2b;
+    border-color: #444;
+    color: #ddd;
+}
+body.dark-mode .theater-item:hover {
+    background-color: #3a3a3a;
+    color: #fff;
+}
+body.dark-mode #map {
+    border-color: #555;
+}
+body.dark-mode .map-image div {
+    background-color: #555;
 }

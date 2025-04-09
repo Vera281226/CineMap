@@ -91,4 +91,12 @@ public class ReviewDao {
             return count != null ? count : 0;
         }
     }
+    
+    public void updateReview(ReviewBean bean) {
+        try (SqlSession sqlSession = factory.openSession()) {
+            sqlSession.update("pack.review.ReviewMapper.updateReview", bean);
+            sqlSession.commit();
+        }
+    }
+
 }

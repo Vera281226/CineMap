@@ -1,3 +1,4 @@
+<%@page import="pack.cookie.CookieManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -12,7 +13,13 @@ session.removeAttribute("idKey");
 </head>
 <body>
 <script type="text/javascript">
-<% session.removeAttribute("idKey"); %>
+<%
+CookieManager cm = CookieManager.getInstance();
+session.removeAttribute("idKey");
+response.addCookie(cm.deleteCookie("UID"));
+response.addCookie(cm.deleteCookie("UPD"));
+response.addCookie(cm.deleteCookie("AUT"));
+%>
 location.href="/CineMap/index.jsp";
 </script>
 </body>

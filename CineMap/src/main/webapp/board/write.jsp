@@ -42,9 +42,10 @@
 <head>
     <meta charset="UTF-8">
     <title>게시글 작성</title>
-    <link rel="stylesheet" type="text/css" href="../css/write.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/board/write.css">
 </head>
 <body>
+<%@ include file="/index_top.jsp" %>
 <div class="container">
 <h2>게시글 작성</h2>
 

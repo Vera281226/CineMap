@@ -81,5 +81,20 @@ public class MovieDao {
             return sqlSession.selectList("pack.movie.MovieMapper.getPagedMovies", map);
         }
     }
+    
+    public boolean deleteMovieById(int id) {
+        try (SqlSession sqlSession = factory.openSession()) {
+            // 먼저 리뷰 삭제
+            int deletedReviews = sqlSession.delete("pack.movie.MovieMapper.deleteReviewsByMovieId", id);
+            // 영화 삭제
+            int deletedMovie = sqlSession.delete("pack.movie.MovieMapper.deleteMovie", id);
+            sqlSession.commit();
+            return deletedMovie > 0; // 영화 삭제가 정상적으로 되었는지만 체크
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
 }

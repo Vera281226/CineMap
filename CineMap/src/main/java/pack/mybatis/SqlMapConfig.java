@@ -5,6 +5,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import pack.business.SqlMapperInter;
 import pack.index.IndexMapperInter;
+import pack.member.MemberMapperInter;
 
 import java.io.Reader;
 
@@ -18,7 +19,7 @@ public class SqlMapConfig {
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
             reader.close();
             
-            Class[] mappers = { IndexMapperInter.class };
+            Class[] mappers = { IndexMapperInter.class, MemberMapperInter.class };
             for(Class m:mappers) {
            	 sqlSessionFactory.getConfiguration().addMapper(m);    	 
             }

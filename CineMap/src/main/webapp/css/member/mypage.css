@@ -1,0 +1,132 @@
+@charset "UTF-8";
+ body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column; /* 세로로 정렬 */
+            align-items: flex-start; /* 왼쪽 정렬 */
+        }
+
+        /* 나의 정보 섹션 */
+        .my-info {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%; /* 전체 너비 사용 */
+            margin-bottom: 20px;
+        }
+
+        .my-info h2 {
+            text-align: left;
+            color: #333;
+        }
+
+        .info-details {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* 왼쪽 정렬 */
+            margin-bottom: 20px;
+        }
+
+        .info-details div {
+            margin-bottom: 10px;
+        }
+
+        .my-info button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 45%;
+            margin-top: 10px;
+        }
+
+        .my-info button:hover {
+            background-color: #45a049;
+        }
+
+        /* 찜한 영화 섹션 */
+        .favorite-movies {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        .favorite-movies h2 {
+            text-align: left;
+            color: #333;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: flex-start; /* 왼쪽 정렬 */
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .category {
+            background-color: #e0e0e0;
+            padding: 15px;
+            border-radius: 10px;
+            margin-right: 10px;
+            text-align: left;
+            flex: 1;
+        }
+
+        .category:last-child {
+            margin-right: 0;
+        }
+
+        .category h3 {
+            margin-bottom: 15px;
+        }
+
+        .category ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .category li {
+            margin: 10px 0;
+        }
+
+        .category a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .category a:hover {
+            color: #4CAF50;
+        }
+
+        /* 버튼 스타일 */
+        .category button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .category button:hover {
+            background-color: #45a049;
+        }
