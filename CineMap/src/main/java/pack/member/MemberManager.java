@@ -5,7 +5,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import pack.mybatis.SqlMapConfig;
 
-public class MemberManager { 
+public class MemberManager {
+
 	private SqlSessionFactory sqlSessionFactory = SqlMapConfig.getSqlSession();
 	
 	// 아이디 중복확인
@@ -13,6 +14,7 @@ public class MemberManager {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		boolean b = false;
 		
+
 		try { 
 			MemberMapperInter inter = sqlSession.getMapper(MemberMapperInter.class);
 			String existId=inter.checkId(id);     
@@ -41,6 +43,7 @@ public class MemberManager {
 			MemberMapperInter inter = sqlSession.getMapper(MemberMapperInter.class);
 			  
 			if(inter.insertMemberData(mbean) > 0) b = true;    
+
 			sqlSession.commit();
 			inter = null;
 		} catch (Exception e) {
@@ -53,12 +56,15 @@ public class MemberManager {
 	}
 	
 	// 로그인 확인
+
 	public boolean loginCheck(String id) {
+
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		boolean b = false;
 		
 		try {
 			MemberMapperInter inter = sqlSession.getMapper(MemberMapperInter.class);
+
 			MemberDto dto=inter.selectLogin(id);
 			if(dto != null) b = true;
 			inter = null;
@@ -77,10 +83,12 @@ public class MemberManager {
 		MemberDto memberDto = null;
 		try {
 			MemberMapperInter inter = sqlSession.getMapper(MemberMapperInter.class);
+
 			memberDto = inter.selectMemberPart(id);
 			inter = null;
 		} catch (Exception e) {
 			System.out.println("getMember err: " + e.getMessage());
+			sqlSession.rollback();
 		} finally {
 			if(sqlSession != null) sqlSession.close();
 		}
@@ -89,15 +97,17 @@ public class MemberManager {
 	
 	// 회원 수정
 	public boolean memberUpdate(MemberBean memberBean) {
+
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		boolean b = false;
 				
 		try {
+
 			MemberMapperInter inter = sqlSession.getMapper(MemberMapperInter.class);
 				// 비밀번호 비교 후 업데이트 결정
 				if(inter.updateMemberData(memberBean) > 0) b = true;
 				sqlSession.commit();
-			
+
 			inter = null;
 			
 		} catch (Exception e) {
@@ -117,6 +127,7 @@ public class MemberManager {
 			MemberMapperInter inter = sqlSession.getMapper(MemberMapperInter.class);
 			
 			int count = inter.deleteMemberData(id); 
+
 			if(count > 0) {
 				b = true;
 				sqlSession.commit();	

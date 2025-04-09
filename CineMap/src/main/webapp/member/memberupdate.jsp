@@ -121,7 +121,6 @@ function memberUpdateCancel(){
 							<td>생년월일</td>
 							<td><input type="text" name="birthdate" size="16" value="<%=dto.getBirthdate() %>"></td>
 						</tr>
-
                         <tr>
                             <td colspan="2" style="text-align: center;">                       
                                 <input type="button" value="회원정보 수정" id="btnUpdate">&nbsp;&nbsp; 
@@ -135,4 +134,3 @@ function memberUpdateCancel(){
     </table>
 </body>
 </html>
-

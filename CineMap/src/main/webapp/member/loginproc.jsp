@@ -3,10 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<jsp:useBean id="memberManager" class="pack.member.MemberManager" />
-
-<%
-request.setCharacterEncoding("utf-8");
+<jsp:useBean id="memberManager" class="pack.member.MemberManager" scope="session" />
+<% request.setCharacterEncoding("utf-8"); %>
 
 CookieManager cm = CookieManager.getInstance();
 
@@ -21,7 +19,6 @@ if("1".equals(rememberMe)) {
 }
 
 boolean b = memberManager.loginCheck(id);
-
 
 if(b){
 	session.setAttribute("idKey", id);

@@ -1,3 +1,5 @@
+<%@page import="pack.mybatis.SqlMapConfig"%>
+<%@page import="org.apache.ibatis.session.SqlSession"%>
 <%@page import="pack.member.MemberManager"%>
 <%@page import="pack.member.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -8,6 +10,8 @@
     String id = (String)session.getAttribute("idKey");
     MemberDto memberDto = null;
 
+    SqlSession sqlSession = SqlMapConfig.getSqlSession().openSession();
+    
     if (id != null) {
         MemberManager manager = new MemberManager();
         memberDto = manager.getMember(id);
@@ -22,7 +26,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>마이페이지</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/member/mypage.css">
-
 </head>
 <body>
     <div class="container">

@@ -11,6 +11,7 @@
 
 <%
 String id = (String)session.getAttribute("idKey");
+
 boolean b = false;
 
 if (id != null) {
