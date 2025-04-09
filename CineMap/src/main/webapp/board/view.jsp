@@ -58,23 +58,22 @@ request.setCharacterEncoding("utf-8");
     }
 %>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>게시글 보기</title>
-    <link rel="stylesheet" type="text/css" href="../css/view.css">
-</head>
-<body>
+<%@ include file="/index_top.jsp" %>
 
-<!-- 카테고리 메뉴 -->
-<div class="category-menu">
-    <a href="list.jsp?sort=<%=sort%>" class="<%=category.isEmpty() ? "active" : ""%>">전체</a>
-    <a href="list.jsp?category=스포&sort=<%=sort%>" class="<%="스포".equals(category) ? "active" : ""%>">스포</a>
-    <a href="list.jsp?category=개봉예정작&sort=<%=sort%>" class="<%="개봉예정작".equals(category) ? "active" : ""%>">개봉예정작</a>
-    <a href="list.jsp?category=공지사항&sort=<%=sort%>" class="<%="공지사항".equals(category) ? "active" : ""%>">공지사항</a>
-    <a href="list.jsp?category=자유게시판&sort=<%=sort%>" class="<%="자유게시판".equals(category) ? "active" : ""%>">자유게시판</a>
-</div>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/board/view.css">
+
+
+<main class="board-main">
+    <h2 class="board-title">게시글 상세정보</h2>
+
+    <!-- 카테고리 메뉴 -->
+    <div class="category-menu">
+        <a href="list.jsp?sort=<%=sort%>" class="<%=category.isEmpty() ? "active" : ""%>">전체</a>
+        <a href="list.jsp?category=스포&sort=<%=sort%>" class="<%="스포".equals(category) ? "active" : ""%>">스포</a>
+        <a href="list.jsp?category=개봉예정작&sort=<%=sort%>" class="<%="개봉예정작".equals(category) ? "active" : ""%>">개봉예정작</a>
+        <a href="list.jsp?category=공지사항&sort=<%=sort%>" class="<%="공지사항".equals(category) ? "active" : ""%>">공지사항</a>
+        <a href="list.jsp?category=자유게시판&sort=<%=sort%>" class="<%="자유게시판".equals(category) ? "active" : ""%>">자유게시판</a>
+    </div>
 
 <div class="container">
     <div class="post-title"><%=post.getTitle()%></div>
@@ -172,6 +171,7 @@ request.setCharacterEncoding("utf-8");
         <% } %>
     </table>
 </div>
+</main>
 
 <script>
 // 페이지 이동 전 스크롤 위치 저장
@@ -187,6 +187,3 @@ window.addEventListener("load", function () {
     }
 });
 </script>
-
-</body>
-</html>

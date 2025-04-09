@@ -29,7 +29,7 @@ public class SearchServlet extends HttpServlet {
             throws ServletException, IOException {
         try (SqlSession session = sqlSessionFactory.openSession()) {
         	String title = request.getParameter("query");
-        	System.out.println(title);
+        	//System.out.println(title);
         	
             IndexMapperInter mapper = session.getMapper(IndexMapperInter.class);
             List<MovieDto> searchMovie = mapper.selectSearchMovie(title);

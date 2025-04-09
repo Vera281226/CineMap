@@ -1,11 +1,12 @@
+@charset "UTF-8";
+
 /* 전체 화면 중앙 정렬 */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* 뷰포트 높이 100% */
+    flex-direction: column;
+    padding: 40px 20px;
 }
 
 /* 게시글 작성 폼 스타일 */
@@ -59,4 +60,47 @@ input[type="button"]:hover {
     color: red;
     font-weight: bold;
     margin-top: 10px;
+}
+
+/* ✅ 다크모드 전체 배경 및 글자색 */
+.dark-mode body {
+    background-color: #222;
+    color: white;
+}
+
+/* ✅ 다크모드 폼 */
+.dark-mode form {
+    background: #333;
+    color: white;
+}
+
+/* ✅ 다크모드 입력 필드 */
+.dark-mode input[type="text"],
+.dark-mode textarea,
+.dark-mode select {
+    background-color: #444;
+    color: white;
+    border: 1px solid #666;
+}
+
+/* ✅ 다크모드 버튼 */
+.dark-mode input[type="submit"],
+.dark-mode input[type="button"] {
+    background-color: #555;
+    color: white;
+}
+
+.dark-mode input[type="submit"]:hover,
+.dark-mode input[type="button"]:hover {
+    background-color: #777;
+}
+
+/* ✅ 다크모드 제목 */
+.dark-mode h2 {
+    color: white;
+}
+
+/* ✅ 다크모드 에러 메시지 */
+.dark-mode .error-message {
+    color: #ff6b6b;
 }

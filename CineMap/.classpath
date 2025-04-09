@@ -13,11 +13,11 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/Users/acorn/Downloads/mybatis-3.5.16.jar"/>
-	<classpathentry kind="lib" path="C:/Users/acorn/Downloads/gson-2.12.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/acorn/Downloads/jakarta.servlet.jsp.jstl-api-2.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/acorn/Downloads/jakarta.servlet.jsp.jstl-2.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/acorn/Downloads/lombok.jar"/>
-	<classpathentry kind="lib" path="C:/Users/acorn/Downloads/mariadb-java-client-3.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/work/라이브러리/jakarta.servlet.jsp.jstl-2.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/work/라이브러리/jakarta.servlet.jsp.jstl-api-2.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/work/라이브러리/lombok.jar"/>
+	<classpathentry kind="lib" path="C:/work/라이브러리/mariadb-java-client-3.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/work/라이브러리/mybatis-3.5.16.jar"/>
+	<classpathentry kind="lib" path="C:/work/라이브러리2/gson-2.12.1 .jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -6,18 +6,11 @@
 
 <%
     request.setCharacterEncoding("utf-8");
-    String id = (String) session.getAttribute("idKey");
+    String id = (String)session.getAttribute("idKey");
     
-    // 세션에 아이디가 없으면 로그인되지 않은 상태이므로 비밀번호 확인 페이지로 리디렉션
-    if (id == null) {
-        response.sendRedirect("passwordcheck.jsp");
-        return;
-    }
-
-    MemberDto memberDto = memberManager.getMember(id);
-    session.setAttribute("member", memberDto);
+    MemberDto dto = memberManager.getMember(id);
     
-    if (memberDto == null) {
+    if (dto == null) {
         response.sendRedirect("../index.jsp");
         return;
     }
@@ -102,32 +95,32 @@ function memberUpdateCancel(){
                         </tr>
                         <tr>
                             <td>아이디</td>
-                            <td>${sessionScope.member.id}</td> <!-- id는 수정에서 제외 -->
+                            <td><input type="hidden" name="id" value="<%=dto.getId() %>"><%=dto.getId() %></td> <!-- id는 수정에서 제외 -->
                         </tr>
                         <tr>
-                            <td>비밀번호</td>
-                            <td><input type="password" name="passwd" size="15" value="${sessionScope.member.passwd}"></td>
-                        </tr>
-                        <tr>
-                            <td>이름</td>
-                            <td><input type="text" name="name" size="15" value="${sessionScope.member.name}"></td>
-                        </tr>
-                        <tr>
-                            <td>닉네임</td>
-                            <td><input type="text" name="nickname" size="15" value="${sessionScope.member.nickname}"></td>
-                        </tr>
-                        <tr>
-                            <td>이메일</td>
-                            <td><input type="text" name="email" size="27" value="${sessionScope.member.email}"></td>
-                        </tr>
-                        <tr>
-                            <td>전화번호</td>
-                            <td><input type="text" name="phone" size="20" value="${sessionScope.member.phone}"></td>
-                        </tr>
-                        <tr>
-                            <td>생년월일</td>
-                            <td><input type="text" name="birthdate" size="16" value="${sessionScope.member.birthdate}"></td>
-                        </tr>
+							<td>비밀번호</td>
+							<td><input type="password" name="passwd" size="15" value="<%=dto.getPasswd() %>"></td>
+						</tr>
+						<tr>
+							<td>이름</td>
+							<td><input type="text" name="name" size="15" value="<%=dto.getName() %>"></td>
+						</tr>
+						<tr>
+							<td>닉네임</td>
+							<td><input type="text" name="nickname" size="15" value="<%=dto.getNickname() %>"></td>
+						</tr>
+						<tr>
+							<td>이메일</td>
+							<td><input type="text" name="email" size="27" value="<%=dto.getEmail() %>"></td>
+						</tr>
+						<tr>
+							<td>전화번호</td>
+							<td><input type="text" name="phone" size="20" value="<%=dto.getPhone() %>"></td>
+						</tr>
+						<tr>
+							<td>생년월일</td>
+							<td><input type="text" name="birthdate" size="16" value="<%=dto.getBirthdate() %>"></td>
+						</tr>
                         <tr>
                             <td colspan="2" style="text-align: center;">                       
                                 <input type="button" value="회원정보 수정" id="btnUpdate">&nbsp;&nbsp; 
@@ -141,7 +134,3 @@ function memberUpdateCancel(){
     </table>
 </body>
 </html>
-
-
-
-

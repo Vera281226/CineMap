@@ -1,159 +1,170 @@
-@charset "UTF-8";
-/* 기존 스타일 */
-table {
-	width: 80%; margin-left: auto; margin-right: auto;
-}
+@charset "UTF-8"; /* CSS 파일의 문자 인코딩 */
 
-a {
-	text-decoration: none;
-	color: #1c1c1c; /* ✅ 라이트 모드 링크 글자색 */
-}
-
+/* ✅ 기본 설정 */
 body {
-	margin: 10px;
-	font-family: Arial, sans-serif;
-	background: #f9f9f9;
-	color: #1c1c1c; /* ✅ 인덱스 페이지와 같은 기본 글자색 */
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #f9f9f9; /* 라이트 배경 */
+  color: #1c1c1c;
 }
 
-/* 상단 네비게이션 */
-.nav {
-	margin-bottom: 20px;
-	text-align: center;
-	color: #1c1c1c; /* ✅ 네비게이션 글자색 */
+body.dark-mode {
+  background: #121212;
+  color: #f0f0f0;
 }
 
-/* 검색 영역 */
+/* ✅ 전체 마진 보정 (헤더 겹침 방지용) */
+main {
+  margin-top: 100px; /* ✅ header + nav + 드롭다운 여유 공간 확보를 위해 넉넉하게 조정 */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* ✅ 전체 가운데 정렬 */
+}
+
+/* ✅ 검색 및 링크 감싸는 컨테이너 */
+.search-and-nav-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* ✅ 가운데 정렬 */
+  margin-bottom: 30px;
+}
+
+/* ✅ 검색창과 링크 메뉴 */
+.nav,
 .search-form {
-	margin-bottom: 30px;
-	text-align: center;
-	color: #1c1c1c; /* ✅ 검색 영역 텍스트 색 */
+  margin-bottom: 15px;
+  text-align: center;
 }
 
+.nav a,
 .search-form input[type="text"],
 .search-form input[type="submit"] {
-	color: #1c1c1c; /* ✅ 입력창 글자색 */
+  color: #1c1c1c;
 }
 
-/* 영화 카드 레이아웃 */
+.dark-mode .nav a,
+.dark-mode .search-form input[type="text"],
+.dark-mode .search-form input[type="submit"] {
+  color: white;
+}
+
+/* ✅ 검색창 크기 직접 지정 */
+.search-form input[type="text"] {
+  width: 240px; /* ✅ 검색 입력창 너비 조절 가능 부분 (원하는 값으로 수정 가능) */
+  padding: 5px;
+  font-size: 20px;
+}
+
+.search-form input[type="submit"] {
+  padding: 5px 10px;
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+/* ✅ 영화 카드 리스트 */
 .movie-list-container {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 25px;
-	margin-bottom: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px; /* ✅ 조금 더 조밀하게 정렬 */
+  justify-content: center; /* ✅ 가운데 정렬 */
+  max-width: 1500px; /* ✅ 가로 5개 배치가 가능한 충분한 너비 확보 */
 }
 
+/* ✅ 개별 영화 카드 */
 .movie-card {
-	width: 230px;
-	background: white;
-	border-radius: 12px;
-	box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-	overflow: hidden;
-	text-align: center;
-	padding: 13px;
-	transition: transform 0.3s ease, box-shadow 0.3s ease;
-	box-sizing: border-box;
-	color: #1c1c1c; /* ✅ 카드 안 글자색 */
-}
-
-.movie-card a {
-	display: block;
-	width: 100%;
-	text-decoration: none;
-	color: inherit;
+  width: 220px; /* ✅ 카드 너비 조정 */
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  text-align: center;
+  padding: 13px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+  color: #1c1c1c;
 }
 
 .movie-card:hover {
-	transform: translateY(-8px);
-	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-8px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 .movie-card img {
-	width: 100%;
-	height: 330px;
-	object-fit: cover;
-	border-radius: 6px;
+  width: 100%;
+  height: 330px;
+  object-fit: cover;
+  border-radius: 6px;
 }
 
 .movie-card .title {
-	font-weight: bold;
-	margin-top: 10px;
-	font-size: 1.1em;
-	color: #1c1c1c; /* ✅ 제목 색상 */
+  font-weight: bold;
+  margin-top: 10px;
+  font-size: 1.1em;
+  color: #1c1c1c;
 }
 
 .movie-card .meta {
-	font-size: 0.9em;
-	color: #666; /* ✅ 부가정보는 회색 */
-	margin-top: 4px;
+  font-size: 0.9em;
+  color: #666;
+  margin-top: 4px;
 }
 
-/* 페이지네이션 */
+/* ✅ 다크 모드 카드 색상 */
+.dark-mode .movie-card {
+  background: #1e1e1e;
+  color: #f0f0f0;
+}
+
+.dark-mode .movie-card .title {
+  color: white;
+}
+
+.dark-mode .movie-card .meta {
+  color: #cccccc;
+}
+
+/* ✅ 페이지네이션 */
 .pagination {
-	text-align: center;
-	margin-top: 30px;
+  text-align: center;
+  margin-top: 30px;
 }
 
 .pagination a,
 .pagination b {
-	margin: 0 5px;
-	font-weight: bold;
-	color: #1c1c1c; /* ✅ 페이지 번호 */
+  margin: 0 5px;
+  font-weight: bold;
+  color: #1c1c1c;
+  text-decoration: none;
 }
 
-/* 반응형 */
+.pagination a:hover {
+  text-decoration: underline;
+}
+
+/* ✅ 현재 페이지 강조 */
+.current-page {
+  color: black;
+}
+
+.dark-mode .pagination a,
+.dark-mode .pagination b,
+.dark-mode .current-page {
+  color: #f0f0f0;
+}
+
+/* ✅ 반응형 */
 @media (max-width: 768px) {
-	.movie-card {
-		width: 180px;
-	}
-	.movie-card img {
-		height: 260px;
-	}
-}
-
-@media (max-width: 480px) {
-	.movie-card {
-		width: 150px;
-	}
-	.movie-card img {
-		height: 220px;
-	}
-}
-
-/* 다크 모드 */
-body.dark-mode {
-	background: #121212;
-	color: #f0f0f0; /* ✅ 전체 텍스트 흰색 */
-}
-
-.dark-mode .movie-card {
-	background-color: #1e1e1e;
-	color: #f0f0f0;
-}
-
-.dark-mode .movie-card .title {
-	color: #ffffff;
-}
-
-.dark-mode .movie-card .meta {
-	color: #cccccc;
-}
-
-.dark-mode .pagination a,
-.dark-mode .pagination b {
-	color: #f0f0f0;
-}
-
-.dark-mode .nav,
-.dark-mode .search-form,
-.dark-mode .search-form input[type="text"],
-.dark-mode .search-form input[type="submit"] {
-	color: #ffffff;
-}
-
-.dark-mode .nav a,
-.dark-mode .pagination a,
-.dark-mode a {
-	color: #f0f0f0;
+  .movie-card {
+    width: 180px;
+  }
+  .movie-card img {
+    height: 260px;
+  }
+  .movie-list-container {
+    justify-content: center;
+  }
+  .search-and-nav-wrapper {
+    margin-bottom: 20px;
+  }
 }

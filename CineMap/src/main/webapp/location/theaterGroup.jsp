@@ -10,14 +10,11 @@
     request.setAttribute("name", name);
 %>
 
-<!DOCTYPE html>
-<html>
-<head>
-   <title>영화관 목록</title>
-   <meta charset="UTF-8">
-   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9f8edb499be7a8316726bf8802b0fa00"></script>
-   <link rel="stylesheet" type="text/css" href="../css/theater.css">
-</head>
+<%@ include file="/index_top.jsp" %>
+
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/theater/theater.css">
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9f8edb499be7a8316726bf8802b0fa00"></script>
+
 <body>
 <div class="container">
 
@@ -63,7 +60,7 @@
 
 <div class="map-image" style="display: flex; align-items: center; margin-bottom: 10px;">
     <div style="flex: 1; height: 1px; background-color: #ccc;"></div>
-    <img src="../images/theater.gif" alt="영화관 이미지" style="margin: 0 15px; height: 40px;">
+    <img id="theater-logo-img" src="../images/theater.gif" alt="영화관 이미지" style="margin: 0 15px; height: 40px;">
     <div style="flex: 1; height: 1px; background-color: #ccc;"></div>
 </div>
 
@@ -93,15 +90,29 @@
         });
 
         currentInfowindow = new kakao.maps.InfoWindow({
-            content: '<div style="padding:5px; width:200px; word-break:break-word;">' +
-                     '<strong>' + name + '</strong><br>' +
-                     address + '</div>'
+            content:
+                '<div style="padding:5px; width:200px; word-break:break-word; background-color:white; color:black;">' +
+                '<strong>' + name + '</strong><br>' + address + '</div>'
         });
 
         currentInfowindow.open(map, currentMarker);
         map.setCenter(position);
         map.setLevel(4);
     }
+    
+    function updateThemeImages(isDarkMode) {
+        const logoImg = document.getElementById("theater-logo-img");
+        if (logoImg) {
+            logoImg.src = isDarkMode ? "../images/theater2.gif" : "../images/theater.gif";
+        }
+    }
+    // 페이지 로드 시 localStorage 테마 확인 → 이미지 설정
+    document.addEventListener("DOMContentLoaded", function () {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "dark") {
+            updateThemeImages(true);
+        } else {
+            updateThemeImages(false);
+        }
+    });
 </script>
-</body>
-</html>

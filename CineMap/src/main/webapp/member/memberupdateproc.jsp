@@ -11,24 +11,11 @@
 
 <%
 String id = (String)session.getAttribute("idKey");
-boolean updateResult = false;
-if (id != null) {
-    updateResult = memberManager.memberUpdate(memberBean, id);
-}
-request.setAttribute("updateResult", updateResult);
-%>
 
-<c:choose>
-    <c:when test="${updateResult}" >
-        <script>
-            alert("수정 성공");
-            location.href = "../index.jsp";
-        </script>
-    </c:when>
-    <c:otherwise>
-        <script>
-            alert("수정 실패\n 관리자에게 문의 바람");
-            history.back();
-        </script>
-    </c:otherwise>
-</c:choose>
+boolean b = false;
+
+if (id != null) {
+    b = memberManager.memberUpdate(memberBean);
+}
+response.sendRedirect("mypage.jsp");
+%>

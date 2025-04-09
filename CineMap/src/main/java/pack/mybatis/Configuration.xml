@@ -28,6 +28,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<mappers>
         <mapper class="pack.business.SqlMapperInter"/>
         <mapper resource="pack/mybatis/PostMapper.xml"/>
+        <mapper resource="pack/mybatis/MovieMapper.xml"/>
+        <mapper resource="pack/mybatis/ReviewMapper.xml"/>
     </mappers>
 
 </configuration>

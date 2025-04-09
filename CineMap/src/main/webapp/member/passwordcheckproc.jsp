@@ -6,8 +6,8 @@
 
 <%
 String id = (String) session.getAttribute("idKey");
-MemberDto dto = memberManager.getMember(id);
-String passwdInput = (String) request.getAttribute("password");
+MemberDto dto = (MemberDto)session.getAttribute("memberDto");
+String passwdInput = dto.getPasswd();
 
 if (id == null) {
     // 로그인 정보가 없을 경우

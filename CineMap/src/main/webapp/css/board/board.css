@@ -122,6 +122,11 @@ th { background-color: #f0f0f0; }
     color: white;
 }
 
+.dark-mode .board-table a {
+    background-color: #333;
+    color: white;
+}
+
 .dark-mode .board-table th {
     background-color: #555;
     color: white;

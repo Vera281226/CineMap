@@ -24,20 +24,15 @@ if (request.getAttribute("searchPosts") == null) {
         <h2>영화 검색 결과</h2>
         <c:choose>
             <c:when test="${not empty searchMovie}">
-                <ul>
                     <c:forEach var="movie" items="${searchMovie}">
-                        <li class="result-item">
-                             <img src="${movie.imageUrl}" alt="${movie.title}">
-                        </li>
+                             <img src="${movie.imageUrl}" alt="${movie.title}">     
                     </c:forEach>
-                </ul>
             </c:when>
             <c:otherwise>
                 <p>검색된 영화가 없습니다.</p>
             </c:otherwise>
         </c:choose>
     </div>
-
     <!-- 게시글 검색 결과 -->
     <div class="result-section">
         <h2>게시글 검색 결과</h2>

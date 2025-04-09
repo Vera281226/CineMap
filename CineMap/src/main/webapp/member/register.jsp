@@ -95,7 +95,6 @@
 	}
 	function idCheck(){
 		if(regForm.id.value === ""){
-			alert("id를 입력하세요");
 			regForm.id.focus();
 		}else{
 			const url = "idcheck.jsp?id=" + regForm.id.value;
